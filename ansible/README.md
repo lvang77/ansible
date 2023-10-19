@@ -10,9 +10,17 @@ done through Jinja2 templates in Ansible roles using the ios_config module.
 ![Lab Diagram](lab.jpg)
 
 ## Images Used
+
 Viptela: 20.6.1
 Cisco Catalyst 8000V: 17.10.01a
 vIOS Router: VIOS-ADVENTERPRISEK9-M
+
+## EVE-NG Lab File
+
+The EVE-NG lab file was exported and is available in the repo for you to import into EVE-NG yourself.
+
+eve-ng-ansible-sdwan.zip
+
 
 ## Cisco SDWAN Details
 
