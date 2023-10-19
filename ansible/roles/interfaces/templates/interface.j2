@@ -1,0 +1,6 @@
+{% for int in interfaces%}
+interface {{int.interface}}
+description {{int.description}}
+ip address {{int.ip}}
+no shutdown
+{% endfor%}

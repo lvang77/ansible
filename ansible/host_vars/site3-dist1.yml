@@ -1,0 +1,35 @@
+
+bgp_config:
+  asn: 65032
+  rid: 192.168.50.30
+  networks:
+    - address: "10.3.5.0"
+      mask: "255.255.255.0"
+  neighbors:
+    - neighbor: 3.3.3.10
+      peer_asn: 65031
+    - neighbor: 3.3.3.12
+      peer_asn: 65033
+
+ospf_config:
+  pid: 3
+  rid: 192.168.50.30
+  networks:
+    - "10.3.1.0 0.0.0.255 area 0"
+    - "10.3.4.0 0.0.0.255 area 0"
+    - "10.3.5.0 0.0.0.255 area 0"
+    - "3.3.3.11 0.0.0.0 area 0"
+
+interfaces:
+  - interface: "Gi0/1"
+    description: "site3-core1 Gi3"
+    ip: "10.3.1.2 255.255.255.0"
+  - interface: "Gi0/2"
+    description: "site3-dist2 Gi0/2"
+    ip: "10.3.4.1 255.255.255.0"
+  - interface: "Gi0/3"
+    description: "10.3.5.0/24"
+    ip: "10.3.5.1 255.255.255.0"
+  - interface: "Lo0"
+    description: "Lo0"
+    ip: "3.3.3.11 255.255.255.0"

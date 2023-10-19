@@ -1,0 +1,16 @@
+---
+# tasks file for save_config_rest_role
+
+- name: "Save Config"
+  uri:
+    url: "https://{{ansible_host}}/restconf/operations/cisco-ia:save-config"
+    method: post
+    user: "{{ansible_user}}"
+    password: "{{ansible_password}}"
+    validate_certs: false
+    headers:
+      Accept: "application/yang-data+json"
+      Content-Type: "application/yang-data+json"
+    status_code:
+      - 200
+      - 204

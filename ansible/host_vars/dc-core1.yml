@@ -1,0 +1,51 @@
+---
+
+interface_config:
+  ietf-interfaces:interfaces:
+    interface:
+    - name: GigabitEthernet1
+      description: MGMT
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 192.168.50.23
+          netmask: 255.255.255.0
+    - name: GigabitEthernet2
+      description: "dc-vedge1 Ge0/2"
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 10.0.0.2
+          netmask: 255.255.255.0
+    - name: GigabitEthernet3
+      description: "10.0.1.0/24"
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 10.0.1.1
+          netmask: 255.255.255.0
+    - name: GigabitEthernet4
+      description: "10.0.2.0/24"
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 10.0.2.1
+          netmask: 255.255.255.0
+
+bgp_config:
+  asn: 65001
+  rid: 192.168.50.23
+  networks:
+    - address: "10.0.0.0"
+      mask: "255.255.255.0"
+    - address: "10.0.1.0"
+      mask: "255.255.255.0"
+    - address: "10.0.2.0"
+      mask: "255.255.255.0"
+  vedge_neighbor:
+    - neighbor: "10.0.0.1"
+      peer_asn: 65000

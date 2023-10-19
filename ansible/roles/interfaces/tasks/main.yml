@@ -1,0 +1,6 @@
+---
+# tasks file for interfaces
+- name: "Setup Interfaces"
+  cisco.ios.ios_config:
+    src: interface.j2
+    save_when: "modified"

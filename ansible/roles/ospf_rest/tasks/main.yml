@@ -1,0 +1,20 @@
+---
+# tasks file for ospf_role
+
+- name: "Setup OSPF"
+  uri:
+    url: "https://{{ansible_host}}/restconf/data/native/router/"
+    method: put
+    user: "{{ansible_user}}"
+    password: "{{ansible_password}}"
+    return_content: yes
+    body: "{{ospf_config}}"
+    body_format: json
+    validate_certs: false
+    headers:
+      Accept:
+        application/yang-data+json
+      Content-Type: "application/yang-data+json"
+    status_code:
+      - 200
+      - 204

@@ -1,0 +1,12 @@
+---
+
+- name: "Setup Site2 Dist"
+  hosts: site2-dist1, site2-dist2
+  gather_facts: false
+  connection: network_cli
+
+  roles:
+    - interfaces
+    - ospf
+    - bgp
+

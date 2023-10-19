@@ -1,0 +1,37 @@
+
+eigrp: true
+
+eigrp_config:
+  as: 1
+  rid: 192.168.50.26
+  networks:
+    - "10.1.2.0 0.0.0.255"
+    - "10.1.4.0 0.0.0.255"
+    - "10.1.6.0 0.0.0.255"
+    - "1.1.1.11 0.0.0.0"
+
+interfaces:
+  - interface: "Gi0/1"
+    description: "site1-core1 Gi3"
+    ip: "10.1.2.2 255.255.255.0"
+  - interface: "Gi0/2"
+    description: "site2-core1 Gi2"
+    ip: "10.1.6.1 255.255.255.0"
+  - interface: "Gi0/3"
+    description: "10.1.4.0/24"
+    ip: "10.1.4.1 255.255.255.0"
+  - interface: "Lo0"
+    description: "Lo0"
+    ip: "1.1.1.11 255.255.255.255" 
+
+bgp_config:
+  asn: 65012
+  rid: 192.168.50.26
+  networks:
+    - address: "10.1.4.0"
+      mask: "255.255.255.0"
+  neighbors:
+    - neighbor: 1.1.1.10
+      peer_asn: 65011
+    - neighbor: 1.1.1.12
+      peer_asn: 65013

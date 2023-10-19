@@ -1,0 +1,61 @@
+all:
+  children:
+    cisco:
+      children:
+        core:
+          children:
+            site1:
+              hosts:
+                site1-core1: 
+                  ansible_host: 192.168.50.18
+                site1-dist1:
+                  ansible_host: 192.168.50.26
+                site1-dist2:
+                  ansible_host: 192.168.50.27       
+            site2:
+              hosts:
+                site2-core1:
+                  ansible_host: 192.168.50.20
+                site2-dist1:
+                  ansible_host: 192.168.50.28
+                site2-dist2:
+                  ansible_host: 192.168.50.29
+            site3:
+              hosts:
+                site3-core1:
+                  ansible_host: 192.168.50.22
+                site3-dist1:
+                  ansible_host: 192.168.50.30
+                site3-dist2:
+                  ansible_host: 192.168.50.31
+            dc:
+              hosts:
+                dc-core1:
+                  ansible_host: 192.168.50.23
+        isp:
+          children:
+            isp1_group:
+              hosts:
+                isp1:
+                  ansible_host: 192.168.50.15
+            isp2_group:
+              hosts:
+                isp2:
+                  ansible_host: 192.168.50.16
+            isp3_group:
+              hosts:
+                isp3:
+                  ansible_host: 192.168.50.14
+    sdwan:
+      children:
+        control:
+          hosts:
+            vmanage:
+              ansible_host: 192.168.50.10
+            vbond:
+              ansible_host: 192.168.50.11
+            vsmart:
+              ansible_host: 192.168.50.12
+          
+        
+

@@ -1,0 +1,7 @@
+---
+# tasks file for bgp
+
+- name: "Setup BGP"
+  cisco.ios.ios_config:
+    src: bgp.j2
+    save_when: "modified"

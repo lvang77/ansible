@@ -1,0 +1,7 @@
+---
+# tasks file for ospf
+
+- name: "Setup OSPF"
+  cisco.ios.ios_config:
+    src: ospf.j2
+    save_when: "modified"

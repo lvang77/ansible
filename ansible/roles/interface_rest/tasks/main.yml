@@ -1,0 +1,20 @@
+---
+# tasks file for interface_rest_role
+
+- name: "Setup Interfaces"
+  uri:
+    url: "https://{{ansible_host}}/restconf/data/ietf-interfaces:interfaces/"
+    method: patch
+    user: "{{ansible_user}}"
+    password: "{{ansible_password}}"
+    return_content: yes
+    body: "{{interface_config}}"
+    body_format: json
+    validate_certs: false
+    headers:
+      Accept:
+        application/yang-data+json
+      Content-Type: "application/yang-data+json"
+    status_code:
+      - 200
+      - 204

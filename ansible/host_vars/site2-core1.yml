@@ -1,0 +1,80 @@
+---
+
+ospf_config:
+  Cisco-IOS-XE-native:router:
+    Cisco-IOS-XE-ospf:router-ospf:
+      ospf:
+        process-id:
+        - id: 2
+          network:
+          - ip: 10.2.0.0
+            wildcard: 0.0.0.255
+            area: 0
+          - ip: 10.2.1.0
+            wildcard: 0.0.0.255
+            area: 0
+          - ip: 10.2.2.0
+            wildcard: 0.0.0.255
+            area: 0
+          - ip: 2.2.2.10
+            wildcard: 0.0.0.0
+            area: 0
+          router-id: 192.168.50.20
+   
+interface_config:
+  ietf-interfaces:interfaces:
+    interface:
+    - name: GigabitEthernet1
+      description: MGMT
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 192.168.50.20
+          netmask: 255.255.255.0
+    - name: GigabitEthernet2
+      description: "site2-vedge1 Ge0/2"
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 10.2.0.2
+          netmask: 255.255.255.0
+    - name: GigabitEthernet3
+      description: "site2-dist1 Gi0/1"
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 10.2.1.1
+          netmask: 255.255.255.0
+    - name: GigabitEthernet4
+      description: "site2-dist2 Gi0/1"
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 10.2.2.1
+          netmask: 255.255.255.0
+    - name: Loopback0
+      type: iana-if-type:softwareLoopback
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 2.2.2.10
+          netmask: 255.255.255.255
+
+bgp_config:
+  asn: 65021
+  rid: 192.168.50.20
+  networks:
+    - address: "10.2.0.0"
+      mask: "255.255.255.0"
+  neighbors:
+    - neighbor: 2.2.2.11
+      peer_asn: 65022
+    - neighbor: 2.2.2.12
+      peer_asn: 65023
+  vedge_neighbor:
+    - neighbor: "10.2.0.1"
+      peer_asn: 65020

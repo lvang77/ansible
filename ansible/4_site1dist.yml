@@ -1,0 +1,13 @@
+---
+
+- name: "Setup Site1 Dist"
+  hosts: site1-dist1, site1-dist2
+  gather_facts: false
+  connection: network_cli
+
+  roles:
+    - interfaces
+    - eigrp
+    - bgp
+  
+

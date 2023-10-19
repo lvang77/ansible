@@ -1,0 +1,4 @@
+---
+
+ansible_user: "admin"
+ansible_password: "admin"

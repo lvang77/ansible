@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Lucky Vang
+  description: Installs EIGRP Router Configuration on Cisco IOSXE RESTCONF
+  license: GPL-2.0-or-later
+
+  min_ansible_version: 2.1
+
+  galaxy_tags:
+    - EIGRP
+    - IOSXE
+    - RESTCONF
+
+dependencies: []
+  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
+  # if you add dependencies to this list.

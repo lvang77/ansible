@@ -1,0 +1,7 @@
+no router eigrp {{ eigrp_config.as }}
+router eigrp {{ eigrp_config.as }}
+ router-id {{ eigrp_config.rid }}
+
+ {% for net in eigrp_config.networks %}
+ network {{ net }}
+ {% endfor %}

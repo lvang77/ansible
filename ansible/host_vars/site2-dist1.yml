@@ -1,0 +1,35 @@
+
+ospf_config:
+  pid: 2
+  rid: 192.168.50.28
+  networks:
+    - "10.2.1.0 0.0.0.255 area 0"
+    - "10.2.4.0 0.0.0.255 area 0"
+    - "10.2.5.0 0.0.0.255 area 0"
+    - "2.2.2.11 0.0.0.0 area 0"
+
+interfaces:
+  - interface: "Gi0/1"
+    description: "site2-core1 Gi3"
+    ip: "10.2.1.2 255.255.255.0"
+  - interface: "Gi0/2"
+    description: "site2-dist2 Gi-/2"
+    ip: "10.2.4.1 255.255.255.0"
+  - interface: "Gi0/3"
+    description: "10.2.5.0/24"
+    ip: "10.2.5.1 255.255.255.0"
+  - interface: "Lo0"
+    description: "Lo0"
+    ip: "2.2.2.11 255.255.255.255"
+
+bgp_config:
+  asn: 65022
+  rid: 192.168.50.28
+  networks:
+    - address: "10.2.5.0"
+      mask: "255.255.255.0"
+  neighbors:
+    - neighbor: 2.2.2.10
+      peer_asn: 65021
+    - neighbor: 2.2.2.12
+      peer_asn: 65023
