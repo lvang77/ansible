@@ -1,0 +1,5 @@
+router ospf {{ host.facts.ospf_config.pid }}
+ router-id {{ host.facts.ospf_config.rid }}
+{% for network in host.facts.ospf_config.networks %}
+ network {{ network }}
+{% endfor %}

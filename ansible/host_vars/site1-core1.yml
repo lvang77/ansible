@@ -76,3 +76,9 @@ bgp_config:
   vedge_neighbor:
     - neighbor: "10.1.1.1"
       peer_asn: 65010
+
+cdp_config:
+  interfaces:
+    - "GigabitEthernet2"
+    - "GigabitEthernet3"
+    - "GigabitEthernet4"

@@ -10,3 +10,4 @@
     - ospf_rest
     - save_config_rest
     - bgp
+    - cdp

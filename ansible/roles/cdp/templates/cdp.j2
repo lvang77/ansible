@@ -1,0 +1,4 @@
+{% for int in cdp_config.interfaces%}
+interface {{int}}
+ cdp enable
+{% endfor%}

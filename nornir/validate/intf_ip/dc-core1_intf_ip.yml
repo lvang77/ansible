@@ -1,0 +1,19 @@
+---
+
+- get_interfaces_ip:
+    GigabitEthernet1:
+      ipv4:
+        192.168.50.23:
+          prefix_length: 24
+    GigabitEthernet2:
+      ipv4:
+        10.0.0.2:
+          prefix_length: 24
+    GigabitEthernet3:
+      ipv4:
+        10.0.1.1:
+          prefix_length: 24
+    GigabitEthernet4:
+      ipv4:
+        10.0.2.1:
+          prefix_length: 24

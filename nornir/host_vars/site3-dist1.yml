@@ -15,10 +15,11 @@ ospf_config:
   pid: 3
   rid: 192.168.50.30
   networks:
+    - "3.3.3.11 0.0.0.0 area 0"
     - "10.3.1.0 0.0.0.255 area 0"
     - "10.3.4.0 0.0.0.255 area 0"
     - "10.3.5.0 0.0.0.255 area 0"
-    - "3.3.3.11 0.0.0.0 area 0"
+    
 
 interfaces:
   - interface: "Gi0/1"
