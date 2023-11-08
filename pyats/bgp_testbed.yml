@@ -1,0 +1,118 @@
+devices:
+  site1-core1:
+    connections:
+      cli:
+        ip: 192.168.50.18
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: iosxe
+    type: iosxe
+  site1-dist1:
+    connections:
+      cli:
+        ip: 192.168.50.26
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: ios
+    type: ios
+  site1-dist2:
+    connections:
+      cli:
+        ip: 192.168.50.27
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: ios
+    type: ios
+  site2-core1:
+    connections:
+      cli:
+        ip: 192.168.50.20
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: iosxe
+    type: iosxe
+  site2-dist1:
+    connections:
+      cli:
+        ip: 192.168.50.28
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: ios
+    type: ios
+  site2-dist2:
+    connections:
+      cli:
+        ip: 192.168.50.29
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: ios
+    type: ios
+  site3-core1:
+    connections:
+      cli:
+        ip: 192.168.50.22
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: iosxe
+    type: iosxe
+  site3-dist1:
+    connections:
+      cli:
+        ip: 192.168.50.30
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: ios
+    type: ios
+  site3-dist2:
+    connections:
+      cli:
+        ip: 192.168.50.31
+        protocol: ssh
+    credentials:
+      default:
+        password: admin
+        username: admin
+      enable:
+        password: ""
+    os: ios
+    type: ios
