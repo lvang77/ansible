@@ -1,0 +1,216 @@
+{
+  "Building configuration...": {},
+  "Current configuration : 7797 bytes": {},
+  "aaa authentication login default local": {},
+  "aaa authorization exec default local": {},
+  "aaa new-model": {},
+  "aaa session-id common": {},
+  "archive": {
+    "path bootflash:archive": {},
+    "write-memory": {}
+  },
+  "boot-end-marker": {},
+  "boot-start-marker": {},
+  "call-home": {
+    "contact-email-addr sch-smart-licensing@cisco.com": {},
+    "profile \"CiscoTAC-1\"": {
+      "active": {},
+      "destination transport-method http": {}
+    }
+  },
+  "cdp run": {},
+  "control-plane": {},
+  "crypto pki certificate chain SLA-TrustPoint": {
+    "certificate ca 01": {
+      "03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905": {},
+      "06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85": {},
+      "1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE": {},
+      "30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030": {},
+      "32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363": {},
+      "3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305": {},
+      "418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0": {},
+      "43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720": {},
+      "467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C": {},
+      "4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC": {},
+      "4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500": {},
+      "526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030": {},
+      "5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678": {},
+      "604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B": {},
+      "68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7": {},
+      "6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934": {},
+      "7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188": {},
+      "7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B": {},
+      "80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB": {},
+      "82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D": {},
+      "C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44": {},
+      "C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191": {},
+      "CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520": {},
+      "D697DF7F 28": {
+        "quit": {}
+      },
+      "D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8": {},
+      "DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201": {}
+    }
+  },
+  "crypto pki certificate chain TP-self-signed-944423564": {
+    "certificate self-signed 01": {
+      "011C1A1B E5DEBCA0 DB8CBF66 3387381C D6EABE77 683873E8 A04D86CC BECF52CD": {},
+      "01601D46 D94C7FD6 29591F71 740EC70B 63FF8771 489C45EE 0235B05F 321AE14A": {},
+      "0603551D 23041830 168014AF 75752EAC 5D64DF61 D552ED50 3EC9AF57 748A1F30": {},
+      "06092A86 4886F70D 01010505 00038201 01004C6E 5816835B B8ABCF38 D00F15A1": {},
+      "0823239B 71530CB3 4BE74855 EB440E8A 41412141 1897C96B 8D0FA828 801DF1FC": {},
+      "1D060355 1D0E0416 0414AF75 752EAC5D 64DF61D5 52ED503E C9AF5774 8A1F300D": {},
+      "30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274": {},
+      "305A170D 33333130 31383035 34303130 5A303031 2E302C06 03550403 1325494F": {},
+      "3082032E 30820216 A0030201 02020101 300D0609 2A864886 F70D0101 05050030": {},
+      "35363430 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02": {},
+      "370681A0 3FAFA134 9A47C0E0 8DFB27CF D868": {
+        "quit": {}
+      },
+      "532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3934 34343233": {},
+      "64F1B72B 7AF92355 E02AA3F2 63071008 AA8EEB3A 214479FB D7336F48 4CF81C9E": {},
+      "6615A90B 53BB550C CE09AB05 00D65887 D1295499 44B7FD5F 22962DD5 DCF06DF7": {},
+      "69666963 6174652D 39343434 32333536 34301E17 0D323331 30313930 35343031": {},
+      "6F0A9F33 0A85FA93 7D4783B3 109EED7C E739E7E3 D384CDD9 5F65227D 7CA8269C": {},
+      "7FF0EBA8 9F20FD8A 116C85ED E8F4D0A2 0017929D A2D9296A FE3B6743 CF2DD170": {},
+      "82010100 B3411529 B9332124 32C647D5 ADB0376D 54A33E99 E03A2976 239F3BC4": {},
+      "8380BE6B 63F7E4DE 197720F2 1FE74A23 5AA2F8A8 FBFB9343 9B2377C6 D05FB71A": {},
+      "8919D51F 02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F": {},
+      "93708D3F 05C88EDD 3EFFC61B 35B4DB6B 87030CF3 A7D3C3BF FC51DAD5 ED2ABF0F": {},
+      "9E9835A9 89ECF341 4C95C9CD CFB27481 23B24247 EA0185FA 4EF948CB B6F9AE02": {},
+      "BD0EF103 F428F611 578584CB 48DB57BC 8300AE29 E6F341D5 FFD9A919 613F5A05": {},
+      "BFB8820A A5D40266 DE92C5B5 5C2AA992 C992EFD3 590FEFBA B61DECD7 BD8ADD48": {},
+      "C09F5D1F 9608146D 09CBC384 40DD443C D9B32358 6F31D473 39C412D0 456AD153": {},
+      "D17608AD 7681E47F CC6A5726 A222A933 DCA51690 29C2AE6A EA9A0862 2AD19C5F": {}
+    }
+  },
+  "crypto pki trustpoint SLA-TrustPoint": {
+    "enrollment pkcs12": {},
+    "revocation-check crl": {}
+  },
+  "crypto pki trustpoint TP-self-signed-944423564": {
+    "enrollment selfsigned": {},
+    "revocation-check none": {},
+    "rsakeypair TP-self-signed-944423564": {},
+    "subject-name cn=IOS-Self-Signed-Certificate-944423564": {}
+  },
+  "diagnostic bootup level minimal": {},
+  "end": {},
+  "file prompt quiet": {},
+  "hostname site1-core1": {},
+  "interface GigabitEthernet1": {
+    "description MGMT": {},
+    "ip address 192.168.50.18 255.255.255.0": {},
+    "ip vrf forwarding MGMT": {},
+    "negotiation auto": {},
+    "no mop enabled": {},
+    "no mop sysid": {}
+  },
+  "interface GigabitEthernet2": {
+    "cdp enable": {},
+    "description site1-vedge1": {},
+    "ip address 10.1.1.2 255.255.255.0": {},
+    "negotiation auto": {},
+    "no mop enabled": {},
+    "no mop sysid": {}
+  },
+  "interface GigabitEthernet3": {
+    "cdp enable": {},
+    "description site1-dist1 Gi0/1": {},
+    "ip address 10.1.2.1 255.255.255.0": {},
+    "negotiation auto": {},
+    "no mop enabled": {},
+    "no mop sysid": {}
+  },
+  "interface GigabitEthernet4": {
+    "cdp enable": {},
+    "description site1-dist2 Gi0/1": {},
+    "ip address 10.1.3.1 255.255.255.0": {},
+    "negotiation auto": {},
+    "no mop enabled": {},
+    "no mop sysid": {}
+  },
+  "interface GigabitEthernet5": {
+    "negotiation auto": {},
+    "no ip address": {},
+    "no mop enabled": {},
+    "no mop sysid": {},
+    "shutdown": {}
+  },
+  "interface GigabitEthernet6": {
+    "negotiation auto": {},
+    "no ip address": {},
+    "no mop enabled": {},
+    "no mop sysid": {},
+    "shutdown": {}
+  },
+  "interface Loopback0": {
+    "ip address 1.1.1.10 255.255.255.255": {}
+  },
+  "ip forward-protocol nd": {},
+  "ip http authentication local": {},
+  "ip http client source-interface GigabitEthernet1": {},
+  "ip http secure-server": {},
+  "ip http server": {},
+  "ip route vrf MGMT 0.0.0.0 0.0.0.0 192.168.50.1": {},
+  "ip scp server enable": {},
+  "ip ssh bulk-mode 131072": {},
+  "ip vrf MGMT": {},
+  "license boot level network-premier addon dna-premier": {},
+  "license udi pid C8000V sn 9GSXUGMK8GX": {},
+  "line aux 0": {},
+  "line con 0": {
+    "exec-timeout 0 0": {},
+    "logging synchronous": {},
+    "stopbits 1": {}
+  },
+  "line vty 0 4": {
+    "exec-timeout 0 0": {},
+    "length 0": {},
+    "transport input ssh": {}
+  },
+  "line vty 5 14": {
+    "transport input ssh": {}
+  },
+  "login on-success log": {},
+  "memory free low-watermark processor 70621": {},
+  "mgcp behavior comedia-check-media-src disable": {},
+  "mgcp behavior comedia-role none": {},
+  "mgcp behavior comedia-sdp-force disable": {},
+  "mgcp behavior rsip-range tgcp-only": {},
+  "mgcp profile default": {},
+  "multilink bundle-name authenticated": {},
+  "no logging console": {},
+  "platform console serial": {},
+  "platform hardware throughput level MB 250": {},
+  "platform punt-keepalive disable-kernel-core": {},
+  "platform qfp utilization monitor load 80": {},
+  "redundancy": {},
+  "restconf": {},
+  "router bgp 65011": {
+    "bgp log-neighbor-changes": {},
+    "bgp router-id 192.168.50.18": {},
+    "neighbor 1.1.1.11 ebgp-multihop 2": {},
+    "neighbor 1.1.1.11 remote-as 65012": {},
+    "neighbor 1.1.1.11 update-source Loopback0": {},
+    "neighbor 1.1.1.12 ebgp-multihop 2": {},
+    "neighbor 1.1.1.12 remote-as 65013": {},
+    "neighbor 1.1.1.12 update-source Loopback0": {},
+    "neighbor 10.1.1.1 remote-as 65010": {},
+    "network 10.1.1.0 mask 255.255.255.0": {}
+  },
+  "router eigrp 1": {
+    "eigrp router-id 192.168.50.18": {},
+    "network 1.1.1.10 0.0.0.0": {},
+    "network 10.1.1.0 0.0.0.255": {},
+    "network 10.1.2.0 0.0.0.255": {},
+    "network 10.1.3.0 0.0.0.255": {}
+  },
+  "service call-home": {},
+  "service timestamps debug datetime msec": {},
+  "service timestamps log datetime msec": {},
+  "spanning-tree extend system-id": {},
+  "subscriber templating": {},
+  "username admin privilege 15 secret 9 $9$ufYLs1.UVvjp5k$2ACncfMBreoUQixdQQ3.SOekPkOrHOBQ6jY/KfvXkX6": {},
+  "version 17.10": {}
+}

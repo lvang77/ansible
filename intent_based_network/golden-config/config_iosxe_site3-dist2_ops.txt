@@ -1,0 +1,115 @@
+{
+  "* Cisco in writing.                                                      *": {},
+  "* IOSv is strictly limited to use for evaluation, demonstration and IOS  *": {},
+  "* Technical Advisory Center. Any use or disclosure, in whole or in part, *": {},
+  "* education. IOSv is provided as-is and is not supported by Cisco's      *": {},
+  "* of the IOSv Software or Documentation to any third party for any       *": {},
+  "* purposes is expressly prohibited except as otherwise authorized by     *": {},
+  "**************************************************************************": {},
+  "**************************************************************************^C": {},
+  "Building configuration...": {},
+  "Current configuration : 3550 bytes": {},
+  "aaa authentication login default local": {},
+  "aaa authorization exec default local": {},
+  "aaa new-model": {},
+  "aaa session-id common": {},
+  "archive": {
+    "path flash:archive": {},
+    "write-memory": {}
+  },
+  "banner incoming ^C": {},
+  "banner login ^C": {},
+  "boot-end-marker": {},
+  "boot-start-marker": {},
+  "control-plane": {},
+  "end": {},
+  "file prompt quiet": {},
+  "hostname site3-dist2": {},
+  "interface GigabitEthernet0/0": {
+    "duplex auto": {},
+    "ip address 192.168.50.31 255.255.255.0": {},
+    "ip vrf forwarding MGMT": {},
+    "media-type rj45": {},
+    "speed auto": {}
+  },
+  "interface GigabitEthernet0/1": {
+    "description site3-core1 Gi4": {},
+    "duplex auto": {},
+    "ip address 10.3.2.2 255.255.255.0": {},
+    "media-type rj45": {},
+    "speed auto": {}
+  },
+  "interface GigabitEthernet0/2": {
+    "description site3-dist1 Gi0/2": {},
+    "duplex auto": {},
+    "ip address 10.3.4.2 255.255.255.0": {},
+    "media-type rj45": {},
+    "speed auto": {}
+  },
+  "interface GigabitEthernet0/3": {
+    "description 10.3.3.0/24": {},
+    "duplex auto": {},
+    "ip address 10.3.3.1 255.255.255.0": {},
+    "media-type rj45": {},
+    "speed auto": {}
+  },
+  "interface Loopback0": {
+    "description Lo0": {},
+    "ip address 3.3.3.12 255.255.255.255": {}
+  },
+  "ip cef": {},
+  "ip dns view vrf MGMT default": {},
+  "ip domain name contoso.com": {},
+  "ip forward-protocol nd": {},
+  "ip route vrf MGMT 0.0.0.0 0.0.0.0 192.168.50.1": {},
+  "ip scp server enable": {},
+  "ip ssh version 2": {},
+  "ip vrf MGMT": {},
+  "ipv6 ioam timestamp": {},
+  "line aux 0": {},
+  "line con 0": {
+    "exec-timeout 0 0": {},
+    "logging synchronous": {}
+  },
+  "line vty 0 4": {
+    "exec-timeout 0 0": {},
+    "transport input ssh": {}
+  },
+  "line vty 5 14": {
+    "transport input ssh": {}
+  },
+  "mmi polling-interval 60": {},
+  "mmi snmp-timeout 180": {},
+  "multilink bundle-name authenticated": {},
+  "no ip http secure-server": {},
+  "no ip http server": {},
+  "no ipv6 cef": {},
+  "no logging console": {},
+  "no mmi auto-configure": {},
+  "no mmi pvc": {},
+  "no scheduler allocate": {},
+  "no service password-encryption": {},
+  "redundancy": {},
+  "router bgp 65033": {
+    "bgp log-neighbor-changes": {},
+    "bgp router-id 192.168.50.31": {},
+    "neighbor 3.3.3.10 ebgp-multihop 2": {},
+    "neighbor 3.3.3.10 remote-as 65031": {},
+    "neighbor 3.3.3.10 update-source Loopback0": {},
+    "neighbor 3.3.3.11 ebgp-multihop 2": {},
+    "neighbor 3.3.3.11 remote-as 65032": {},
+    "neighbor 3.3.3.11 update-source Loopback0": {},
+    "network 10.3.3.0 mask 255.255.255.0": {}
+  },
+  "router ospf 3": {
+    "network 10.3.2.0 0.0.0.255 area 0": {},
+    "network 10.3.3.0 0.0.0.255 area 0": {},
+    "network 10.3.4.0 0.0.0.255 area 0": {},
+    "network 3.3.3.12 0.0.0.0 area 0": {},
+    "router-id 192.168.50.31": {}
+  },
+  "service timestamps debug datetime msec": {},
+  "service timestamps log datetime msec": {},
+  "username admin privilege 15 password 0 admin": {},
+  "version 15.9": {}
+}

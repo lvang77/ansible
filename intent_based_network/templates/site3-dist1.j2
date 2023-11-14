@@ -1,0 +1,191 @@
+!
+
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname site3-dist1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local 
+!
+!
+!
+!
+!
+aaa session-id common
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+ip vrf MGMT
+!
+!
+!
+!
+ip domain name contoso.com
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+archive
+ path flash:archive
+ write-memory
+file prompt quiet
+username admin privilege 15 password 0 admin
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description Lo0
+ ip address 3.3.3.11 255.255.255.0
+!
+interface GigabitEthernet0/0
+ ip vrf forwarding MGMT
+ ip address 192.168.50.30 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ description site3-core1 Gi3
+ ip address 10.3.1.2 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ description site3-dist2 Gi0/2
+ ip address 10.3.4.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ description 10.3.5.0/24
+ ip address 10.3.5.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+{% if host.facts.ospf_config is defined %}
+router ospf {{ host.facts.ospf_config.pid }}
+ router-id {{ host.facts.ospf_config.rid }}
+{% for network in host.facts.ospf_config.networks %}
+ network {{ network }}
+{% endfor %}
+{% endif %}
+!
+{% if host.facts.bgp_config is defined %}
+router bgp {{ host.facts.bgp_config.asn }}
+ bgp router-id {{ host.facts.bgp_config.rid }}
+ bgp log-neighbor-changes
+{% for network in host.facts.bgp_config.networks %}
+ network {{ network.address }} mask {{ network.mask }}
+{% endfor %}
+{% for neighbor in host.facts.bgp_config.neighbors %}
+ neighbor {{ neighbor.neighbor }} remote-as {{ neighbor.peer_asn }}
+ neighbor {{ neighbor.neighbor }} ebgp-multihop 2
+ neighbor {{ neighbor.neighbor }} update-source Loopback0
+{% endfor %}
+{% endif %}
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip dns view vrf MGMT default
+ip route vrf MGMT 0.0.0.0 0.0.0.0 192.168.50.1
+ip ssh version 2
+ip scp server enable
+!
+ipv6 ioam timestamp
+!
+!
+!
+!
+!
+control-plane
+!
+banner exec 
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+banner incoming 
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+banner login 
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ transport input ssh
+line vty 5 14
+ transport input ssh
+!
+no scheduler allocate
+!
+end

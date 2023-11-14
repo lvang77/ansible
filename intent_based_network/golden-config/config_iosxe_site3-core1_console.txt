@@ -1,0 +1,317 @@
++++ site3-core1 with via 'cli': executing command 'show running-config' +++
+show running-config
+Building configuration...
+
+Current configuration : 7810 bytes
+!
+! Last configuration change at 21:48:15 UTC Wed Nov 8 2023 by admin
+!
+version 17.10
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service call-home
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+platform console serial
+platform hardware throughput level MB 250
+!
+hostname site3-core1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no logging console
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local 
+!
+!
+aaa session-id common
+!
+ip vrf MGMT
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-4265552981
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-4265552981
+ revocation-check none
+ rsakeypair TP-self-signed-4265552981
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+!
+!
+crypto pki certificate chain TP-self-signed-4265552981
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 34323635 35353239 3831301E 170D3233 31303139 30353430 
+  32335A17 0D333331 30313830 35343032 335A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D34 32363535 
+  35323938 31308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 
+  0A028201 01009CA0 2F67BC2F E3ABA890 C0F94DC8 14BF7F5F 7B065EEB EAC68EB5 
+  BE615D61 E9A292F4 30398368 98B07579 E2EA7657 2B8B12B2 979133D9 1BB1257E 
+  BFC65AC8 5BD986CD C73F63BA CC2413B8 66E4B173 26718C90 40BBBBA6 F8B4D855 
+  E72C4CCB C39290B4 E01AA0CB 9C422894 0CC20F8A 5ADC24C8 28B5B713 3AAEF313 
+  A9AB0DAA 6A0AA3E2 EB357487 7D9F15E8 3D0E3783 D8F94EA2 1FB3934F A2F72FCD 
+  CAB3F44E FEAE30B9 0BE6AA68 7C9D96F9 B396398C BE39BEE5 C8989AA5 822A32F7 
+  FC11CD9D 155BBE93 06C4B42D D3F0AD1A 0BB42EBB 8B8F1031 77B61D3D 90482D64 
+  B9AFC350 76C94BED D681AB03 0C692A20 07C18F94 5D1C2E6E 733CEDAE 13807B77 
+  C2D280B8 5BF90203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 
+  301F0603 551D2304 18301680 1414ED74 FA5D2488 63F3DF13 BC1F77E9 DC5E830A 
+  02301D06 03551D0E 04160414 14ED74FA 5D248863 F3DF13BC 1F77E9DC 5E830A02 
+  300D0609 2A864886 F70D0101 05050003 82010100 211F7EFD 117B6CE8 2D34340F 
+  23A16BC4 1A4E8454 732DF221 508986A8 8428C433 C04E1AC4 2EAE9D30 01BC2F4D 
+  52C06AC1 FAEA7574 6B3B7509 3651C98A 28B83E46 6E5DAF3F C3457457 5ABD2D6A 
+  9ECD5FD2 F23ED9F7 BDD79612 353DEDF4 5291EF21 7ABCB7FF B1C1023F F3D37B92 
+  1DF9B6FD 3927945F 9C6CCE10 6AC82386 C112F8C2 FF144C47 5136217B 28A20A93 
+  305D6F21 F1C89E51 7C9EAC04 F2720B68 4BF78464 C10D2905 BB3EB63F 855412FC 
+  DB87CF4D D92BC1C4 C1CECA61 C54204AF 398F2529 22DFF739 154EB7BD F8BE1949 
+  0F9811EF 6D515A40 79E7B3BB F7AA74C7 5692F414 FB316420 8A1B9FFC 62DC2A74 
+  42F41CC5 00E995ED 986CFFEC 19B189DE D26996CF
+  	quit
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid C8000V sn 9KCLTXPA0SZ
+license boot level network-premier addon dna-premier
+diagnostic bootup level minimal
+archive
+ path bootflash:archive
+ write-memory
+memory free low-watermark processor 70621
+file prompt quiet
+!
+!
+spanning-tree extend system-id
+!
+!
+!
+username admin privilege 15 secret 9 $9$yjwUzk3c2zNCOU$U53/uCAKW6h0Jm0E349WhAuVCuJwEGmwJxynb6VrXL2
+!
+redundancy
+!
+!
+!
+!
+!
+cdp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback0
+ description Lo0
+ ip address 3.3.3.10 255.255.255.255
+!
+interface GigabitEthernet1
+ description MGMT
+ ip vrf forwarding MGMT
+ ip address 192.168.50.22 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description site3-vedge1 Gi4
+ ip address 10.3.0.2 255.255.255.0
+ negotiation auto
+ cdp enable
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ description site3-dist1 Gi0/1
+ ip address 10.3.1.1 255.255.255.0
+ negotiation auto
+ cdp enable
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet4
+ description site3-dist2 Gi0/1
+ ip address 10.3.2.1 255.255.255.0
+ negotiation auto
+ cdp enable
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet5
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet6
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+router ospf 3
+ router-id 192.168.50.22
+ network 3.3.3.10 0.0.0.0 area 0
+ network 10.3.1.0 0.0.0.255 area 0
+ network 10.3.2.0 0.0.0.255 area 0
+!
+router bgp 65031
+ bgp router-id 192.168.50.22
+ bgp log-neighbor-changes
+ network 10.3.0.0 mask 255.255.255.0
+ neighbor 3.3.3.11 remote-as 65032
+ neighbor 3.3.3.11 ebgp-multihop 2
+ neighbor 3.3.3.11 update-source Loopback0
+ neighbor 3.3.3.12 remote-as 65033
+ neighbor 3.3.3.12 ebgp-multihop 2
+ neighbor 3.3.3.12 update-source Loopback0
+ neighbor 10.3.0.1 remote-as 65030
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip http client source-interface GigabitEthernet1
+!
+ip route vrf MGMT 0.0.0.0 0.0.0.0 192.168.50.1
+ip ssh bulk-mode 131072
+ip scp server enable
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ stopbits 1
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ length 0
+ transport input ssh
+line vty 5 14
+ transport input ssh
+!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+!
+!
+!
+!
+!
+!
+restconf
+end
+
+site3-core1#
