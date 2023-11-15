@@ -1,0 +1,24 @@
+feature ospf
+
+{% for intf in ospf_config.interfaces %}
+interface {{ intf.interface }}
+{% if intf.ip_addr is defined%}
+  ip address {{ intf.ip_addr }}
+  ip router ospf {{ ospf_config.pid }} area {{ intf.area }}
+  no shutdown
+{% endif %}
+{% if intf.ip_addr is not defined %}
+  medium p2p
+  ip unnumbered {{ ospf_config.loopback.interface }}
+  ip ospf network point-to-point
+  ip router ospf {{ ospf_config.pid }} area {{ intf.area }}
+  no shutdown
+{% endif %}
+{% endfor %}
+
+interface {{ ospf_config.loopback.interface }}
+  ip address {{ ospf_config.loopback.ip_addr }}
+  ip router ospf {{ ospf_config.pid }} area {{ ospf_config.loopback.area }}
+
+router ospf {{ ospf_config.pid }}
+  router-id {{ ospf_config.rid }}

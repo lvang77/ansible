@@ -1,0 +1,10 @@
+---
+
+- name: "Setup DC Spine Leaf"
+  hosts: spine_leaf
+  gather_facts: false
+  connection: network_cli
+
+  roles:
+    - ospf_nxos
+    - bgp_nxos

@@ -35,6 +35,31 @@ interface_config:
         address:
         - ip: 10.0.2.1
           netmask: 255.255.255.0
+    - name: Loopback0
+      type: iana-if-type:softwareLoopback
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 1.0.0.1
+          netmask: 255.255.255.255
+
+ospf_config:
+  Cisco-IOS-XE-native:router:
+    Cisco-IOS-XE-ospf:router-ospf:
+      ospf:
+        process-id:
+        - id: 1
+          network:
+          - ip: 10.0.0.0
+            wildcard: 0.0.0.255
+            area: 0
+          - ip: 10.0.1.0
+            wildcard: 0.0.0.255
+            area: 0
+          - ip: 1.0.0.1
+            wildcard: 0.0.0.0
+            area: 0
+          router-id: 192.168.50.23
 
 bgp_config:
   asn: 65001
@@ -46,6 +71,9 @@ bgp_config:
       mask: "255.255.255.0"
     - address: "10.0.2.0"
       mask: "255.255.255.0"
+  neighbors:
+    - neighbor: 1.0.0.4
+      peer_asn: 65003
   vedge_neighbor:
     - neighbor: "10.0.0.1"
       peer_asn: 65000

@@ -32,6 +32,21 @@ all:
               hosts:
                 dc-core1:
                   ansible_host: 192.168.50.23
+              children:
+                spine_leaf:
+                  hosts:
+                    dc-spine1:
+                      ansible_host: 192.168.50.32
+                    dc-spine2:
+                      ansible_host: 192.168.50.33
+                    dc-leaf1:
+                      ansible_host: 192.168.50.34
+                    dc-leaf2:
+                      ansible_host: 192.168.50.35
+                    dc-leaf3:
+                      ansible_host: 192.168.50.36
+                    dc-leaf4:
+                      ansible_host: 192.168.50.37
         isp:
           children:
             isp1_group:

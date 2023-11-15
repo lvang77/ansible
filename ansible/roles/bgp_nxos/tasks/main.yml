@@ -1,0 +1,7 @@
+---
+# tasks file for bgp
+
+- name: "Setup BGP"
+  cisco.nxos.nxos_config:
+    src: bgp_nxos.j2
+    save_when: "modified"

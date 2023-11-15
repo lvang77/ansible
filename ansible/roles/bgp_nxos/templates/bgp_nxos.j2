@@ -1,0 +1,12 @@
+feature bgp
+router bgp {{ bgp_config.asn }}
+  router-id {{ bgp_config.rid }}
+{% if bgp_config.neighbors is defined%}
+{% for neigh in bgp_config.neighbors %}
+  neighbor {{ neigh.neighbor }}
+    remote-as {{ neigh.peer_asn }}
+    update-source {{ bgp_config.loopback.interface }}
+    ebgp-multihop 2
+    address-family ipv4 unicast
+{%endfor%}
+{%endif%}
