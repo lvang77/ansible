@@ -1,12 +1,60 @@
-feature bgp
 router bgp {{ bgp_config.asn }}
   router-id {{ bgp_config.rid }}
-{% if bgp_config.neighbors is defined%}
-{% for neigh in bgp_config.neighbors %}
-  neighbor {{ neigh.neighbor }}
-    remote-as {{ neigh.peer_asn }}
+  address-family ipv4 unicast
+    maximum-paths 4
+{% if bgp_config.layer == "spine"%}
+  address-family l2vpn evpn
+    retain route-target all
+  template peer LEEF-PEERING
     update-source {{ bgp_config.loopback.interface }}
-    ebgp-multihop 2
     address-family ipv4 unicast
+      send-community
+      send-community extended
+      route-reflector-client
+      soft-reconfiguration inbound
+    address-family l2vpn evpn
+      send-community
+      send-community extended
+      route-reflector-client
+{% endif %}
+{% if bgp_config.layer == "leaf"%}
+  address-family l2vpn evpn
+  template peer SPINE-PEERING
+    update-source {{ bgp_config.loopback.interface }}
+    address-family ipv4 unicast
+      send-community extended
+      soft-reconfiguration inbound
+    address-family l2vpn evpn
+      send-community
+      send-community extended
+{% endif %}
+{% if bgp_config.neighbors is defined %}
+{% for neigh in bgp_config.neighbors %}
+{% if bgp_config.asn == neigh.peer_asn%}
+  neighbor {{ neigh.neighbor }}
+{% if bgp_config.layer == "spine"%}
+    inherit peer LEEF-PEERING
+{% endif %}
+{% if bgp_config.layer == "leaf"%}
+    inherit peer SPINE-PEERING
+{% endif %}
+    remote-as {{ neigh.peer_asn }}
+{% endif %}
 {%endfor%}
 {%endif%}
+{% if bgp_config.networks is defined %}
+  vrf L3-VNI
+    log-neighbor-changes
+    address-family ipv4 unicast
+{% for net in bgp_config.networks %}
+      network {{ net.address }}
+{% endfor %}
+{% for neigh in bgp_config.neighbors %}
+{% if bgp_config.asn != neigh.peer_asn%}
+    neighbor {{ neigh.neighbor }}
+      remote-as {{ neigh.peer_asn }}
+      address-family ipv4 unicast
+        prefix-list NO-HOSTS out
+{% endif %}
+{% endfor %}
+{% endif %}

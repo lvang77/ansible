@@ -1,24 +1,29 @@
-feature ospf
-
 {% for intf in ospf_config.interfaces %}
 interface {{ intf.interface }}
 {% if intf.ip_addr is defined%}
+  no switchport
   ip address {{ intf.ip_addr }}
   ip router ospf {{ ospf_config.pid }} area {{ intf.area }}
   no shutdown
 {% endif %}
 {% if intf.ip_addr is not defined %}
+  mtu 9216
   medium p2p
-  ip unnumbered {{ ospf_config.loopback.interface }}
+  ip unnumbered loopback0
   ip ospf network point-to-point
   ip router ospf {{ ospf_config.pid }} area {{ intf.area }}
+  ip pim sparse-mode
   no shutdown
 {% endif %}
 {% endfor %}
 
-interface {{ ospf_config.loopback.interface }}
-  ip address {{ ospf_config.loopback.ip_addr }}
-  ip router ospf {{ ospf_config.pid }} area {{ ospf_config.loopback.area }}
+{% for intf in ospf_config.loopback %}
+interface {{ intf.interface }}
+  ip address {{ intf.ip_addr }} {{ intf.mask }}
+  ip ospf network point-to-point
+  ip router ospf {{ ospf_config.pid }} area {{ intf.area }}
+  ip pim sparse-mode
+{% endfor %}
 
 router ospf {{ ospf_config.pid }}
   router-id {{ ospf_config.rid }}

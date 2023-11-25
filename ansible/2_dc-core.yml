@@ -1,7 +1,7 @@
 ---
 
-- name: "Setup DC"
-  hosts: dc
+- name: "Setup dc-core1"
+  hosts: dc-core1
   gather_facts: false
   connection: network_cli
 

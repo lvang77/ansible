@@ -1,6 +1,36 @@
 ---
 
-- name: "Setup DC Spine Leaf"
+- name: "Setup DC Spine Leaf Features"
+  hosts: spine_leaf
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: "Enable Features for VXLAN"
+      cisco.nxos.nxos_config:
+        lines:
+          - feature bgp
+          - feature ospf
+          - feature pim
+          - feature fabric forwarding
+          - feature interface-vlan
+          - feature vn-segment-vlan-based
+          - feature nv overlay
+          - nv overlay evpn
+
+- name: "Setup Border Leaf Route Filtering"
+  hosts: dc-leaf1
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: "Create Prefix List for Border Leaf"
+      cisco.nxos.nxos_config:
+        lines:
+          - ip prefix-list NO-HOSTS seq 5 deny 0.0.0.0/0 eq 32
+          - ip prefix-list NO-HOSTS seq 10 permit 0.0.0.0/0 le 32
+ 
+- name: "Setup DC Spine Leaf Roles"
   hosts: spine_leaf
   gather_facts: false
   connection: network_cli
@@ -8,3 +38,12 @@
   roles:
     - ospf_nxos
     - bgp_nxos
+
+- name: "Setup VXLAN VLANS"
+  hosts: leaf
+  gather_facts: false
+  connection: network_cli
+
+  roles:
+    - vxlan_nxos
+    - multicast_nxos

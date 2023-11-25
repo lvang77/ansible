@@ -1,0 +1,7 @@
+---
+# tasks file for multicast
+
+- name: "Setup Multicast Underlay Routing"
+  cisco.nxos.nxos_config:
+    src: multicast_nxos.j2
+    save_when: "modified"

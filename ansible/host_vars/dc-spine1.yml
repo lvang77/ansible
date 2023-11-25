@@ -13,28 +13,34 @@ ospf_config:
     - interface: e1/4
       area: 0
   loopback:
-    interface: loopback0
-    ip_addr: 1.0.0.2 255.255.255.255
-    area: 0
+    - interface: loopback0
+      ip_addr: 1.0.0.2
+      mask: 255.255.255.255
+      area: 0
+    - interface: loopback1
+      ip_addr: 1.2.3.4
+      mask: 255.255.255.255
+      area: 0
 
 bgp_config:
+  layer: "spine"
   asn: 65002
   rid: 192.168.50.32
-  networks:
-    - address: "10.0.0.0"
-      mask: "255.255.255.0"
-    - address: "10.0.1.0"
-      mask: "255.255.255.0"
-    - address: "10.0.2.0"
-      mask: "255.255.255.0"
   neighbors:
     - neighbor: 1.0.0.4
-      peer_asn: 65003
+      peer_asn: 65002
     - neighbor: 1.0.0.5
-      peer_asn: 65004
+      peer_asn: 65002
     - neighbor: 1.0.0.6
-      peer_asn: 65005
+      peer_asn: 65002
     - neighbor: 1.0.0.7
-      peer_asn: 65006
+      peer_asn: 65002
   loopback:
     interface: loopback0
+
+multicast:
+  layer: "spine"
+  rp_address: 1.2.3.4
+  lo0_addr: 1.0.0.2
+
+

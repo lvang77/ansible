@@ -1,7 +1,7 @@
-bgp
+vxlan
 =========
 
-Installs OSPF routing configs on Cisco NXOS through CLI.
+Configure VXLANS in Cisco NXOS through CLI.
 
 Requirements
 ------------

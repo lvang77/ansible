@@ -73,7 +73,7 @@ bgp_config:
       mask: "255.255.255.0"
   neighbors:
     - neighbor: 1.0.0.4
-      peer_asn: 65003
+      peer_asn: 65002
   vedge_neighbor:
     - neighbor: "10.0.0.1"
       peer_asn: 65000

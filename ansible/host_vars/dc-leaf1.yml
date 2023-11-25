@@ -4,32 +4,58 @@ ospf_config:
   pid: 1
   rid: 192.168.50.34
   interfaces:
-    - interface: e1/1
-      area: 0
-    - interface: e1/2
-      area: 0
-    - interface: e1/3
-      area: 0
-      ip_addr: 10.0.1.2 255.255.255.0
+    - interface: Ethernet1/1
+      area: 0.0.0.0
+    - interface: Ethernet1/2
+      area: 0.0.0.0
   loopback:
-    interface: loopback0
-    ip_addr: 1.0.0.4 255.255.255.255
-    area: 0
+    - interface: loopback0
+      ip_addr: 1.0.0.4
+      mask: 255.255.255.255
+      area: 0.0.0.0
 
 bgp_config:
-  asn: 65003
+  layer: "leaf"
+  asn: 65002
   rid: 192.168.50.34
   networks:
-    - address: "10.0.0.0"
-      mask: "255.255.255.0"
-    - address: "10.0.1.0"
-      mask: "255.255.255.0"
-    - address: "10.0.2.0"
-      mask: "255.255.255.0"
+    - address: "10.0.10.0/24"
+    - address: "10.0.20.0/24"
   neighbors:
     - neighbor: 1.0.0.2
       peer_asn: 65002
     - neighbor: 1.0.0.3
       peer_asn: 65002
+    - neighbor: 10.0.1.1
+      peer_asn: 65001
   loopback:
     interface: loopback0
+
+multicast:
+  layer: "leaf"
+  rp_address: 1.2.3.4
+  group_list: 224.0.0.0/4
+  ssm_range: 232.0.0.0/8
+  anycast_mac: 0000.0011.1111
+
+vxlan:
+  vlans:
+    - vlan: 10
+      vni: 101010
+      ip_addr: 10.0.10.1 255.255.255.0
+      multicast: 239.0.0.10
+    - vlan: 20
+      vni: 202020
+      ip_addr: 10.0.20.1 255.255.255.0
+      multicast: 239.0.0.20
+
+vlans:
+  interfaces:
+    - interface: e1/4
+      vlan: 10
+    - interface: e1/5
+      vlan: 10
+
+border_leaf:
+  interface: Ethernet1/3
+  ip_addr: 10.0.1.2 255.255.255.0

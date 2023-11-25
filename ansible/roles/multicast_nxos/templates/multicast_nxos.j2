@@ -1,0 +1,8 @@
+{% if multicast.layer == "leaf"%}
+fabric forwarding anycast-gateway-mac 0000.0011.1234
+{% endif %}
+ip pim rp-address {{ multicast.rp_address }} group-list 224.0.0.0/4
+ip pim ssm range 232.0.0.0/8
+{% if multicast.layer == " spine"%}
+ip pim anycast-rp {{ multicast.rp_address }} {{ multicast.lo0_addr }}
+{% endif %}

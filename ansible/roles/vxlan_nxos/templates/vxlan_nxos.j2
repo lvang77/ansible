@@ -1,0 +1,58 @@
+{% for vlans in vxlan.vlans %}
+vlan {{ vlans.vlan }}
+  vn-segment {{ vlans.vni }}
+interface vlan {{ vlans.vlan }}
+  no shutdown
+  vrf member L3-VNI
+  ip address {{ vlans.ip_addr }}
+  fabric forwarding mode anycast-gateway
+{% endfor %}
+
+vlan 99
+  vn-segment 999999
+
+vrf context L3-VNI
+  vni 999999
+  rd auto
+  address-family ipv4 unicast
+    route-target both auto
+    route-target both auto evpn
+
+interface vlan 99
+  no shutdown
+  vrf member L3-VNI
+  ip forward
+
+evpn
+{% for vlans in vxlan.vlans %}
+  vni {{ vlans.vni }} l2
+    rd auto
+    route-target import auto
+    route-target export auto
+{% endfor %}
+
+interface nve1
+  no shutdown
+  host-reachability protocol bgp
+  source-interface loopback0
+{% for vlans in vxlan.vlans %}
+  member vni {{ vlans.vni }}
+    suppress-arp
+    mcast-group 224.1.1.192
+{% endfor %}
+  member vni 999999 associate-vrf
+
+{% for vlans in vlans.interfaces %}
+interface {{ vlans.interface }}
+  no shutdown
+  switchport
+  switchport mode access
+  switchport access vlan {{ vlans.vlan }}
+{% endfor %}
+
+{% if border_leaf is defined %}
+interface {{ border_leaf.interface }}
+  vrf member L3-VNI
+  ip address {{ border_leaf.ip_addr }}
+  no shutdown
+{% endif %}

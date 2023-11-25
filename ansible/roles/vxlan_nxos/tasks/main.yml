@@ -1,0 +1,7 @@
+---
+# tasks file for vxlan
+
+- name: "Setup VXLAN VLANS"
+  cisco.nxos.nxos_config:
+    src: vxlan_nxos.j2
+    save_when: "modified"
