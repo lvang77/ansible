@@ -52,19 +52,15 @@ all:
                         dc-leaf4:
                           ansible_host: 192.168.50.37
         isp:
-          children:
-            isp1_group:
-              hosts:
-                isp1:
-                  ansible_host: 192.168.50.15
-            isp2_group:
-              hosts:
-                isp2:
-                  ansible_host: 192.168.50.16
-            isp3_group:
-              hosts:
-                isp3:
-                  ansible_host: 192.168.50.14
+            hosts:
+              isp1:
+                ansible_host: 192.168.50.15
+              isp2:
+                ansible_host: 192.168.50.16
+              isp3:
+                ansible_host: 192.168.50.17
+              isp4:
+                ansible_host: 192.168.50.14
     sdwan:
       children:
         control:

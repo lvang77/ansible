@@ -1,20 +1,5 @@
 ---
 
-eigrp_config:
-  Cisco-IOS-XE-native:router:
-    Cisco-IOS-XE-eigrp:router-eigrp:
-      eigrp:
-        classic-mode:
-        - autonomous-system: 1
-          eigrp:
-            router-id: 192.168.50.14
-          network:
-            address-wildcard:
-            - ipv4-address: 172.30.0.0
-              wildcard: 0.0.1.255
-            - ipv4-address: 172.30.2.0
-              wildcard: 0.0.0.255
-
 interface_config:
   ietf-interfaces:interfaces:
     interface:
@@ -24,26 +9,54 @@ interface_config:
       enabled: true
       ietf-ip:ipv4:
         address:
-        - ip: 192.168.50.14
+        - ip: 192.168.50.17
           netmask: 255.255.255.0
     - name: GigabitEthernet2
       type: iana-if-type:ethernetCsmacd
       enabled: true
       ietf-ip:ipv4:
         address:
-        - ip: 172.30.0.1
+        - ip: 172.16.2.1
           netmask: 255.255.255.0
     - name: GigabitEthernet3
       type: iana-if-type:ethernetCsmacd
       enabled: true
       ietf-ip:ipv4:
         address:
-        - ip: 172.30.1.1
+        - ip: 172.26.5.1
           netmask: 255.255.255.0
     - name: GigabitEthernet4
       type: iana-if-type:ethernetCsmacd
       enabled: true
       ietf-ip:ipv4:
         address:
-        - ip: 172.30.2.1
+        - ip: 172.26.4.2
           netmask: 255.255.255.0
+    - name: GigabitEthernet5
+      type: iana-if-type:ethernetCsmacd
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 172.26.1.2
+          netmask: 255.255.255.0
+
+ospf_config:
+  Cisco-IOS-XE-native:router:
+    Cisco-IOS-XE-ospf:router-ospf:
+      ospf:
+        process-id:
+        - id: 1
+          network:
+          - ip: 172.16.2.0
+            wildcard: 0.0.0.255
+            area: 0
+          - ip: 172.26.5.0
+            wildcard: 0.0.0.255
+            area: 0
+          - ip: 172.26.4.0
+            wildcard: 0.0.0.0
+            area: 0
+          - ip: 172.26.1.0
+            wildcard: 0.0.0.0
+            area: 0
+          router-id: 192.168.50.17
