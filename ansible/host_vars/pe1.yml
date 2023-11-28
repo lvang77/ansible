@@ -43,13 +43,21 @@ ospf_config:
             ldp:
               autoconfig: {}
           network:
-          - ip: 172.16.0.0
-            wildcard: 0.0.0.255
-            area: 0
           - ip: 172.20.0.0
             wildcard: 0.0.0.255
             area: 0
           - ip: 11.11.11.11
             wildcard: 0.0.0.0
             area: 0
+          redistribute:
+            ospf:
+            - process-id: 2
           router-id: 192.168.50.38
+        - id: 2
+          network:
+          - ip: 172.16.0.0
+            wildcard: 0.0.0.255
+            area: 0
+          redistribute:
+            ospf:
+            - process-id: 1
