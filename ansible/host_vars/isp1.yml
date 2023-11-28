@@ -54,9 +54,9 @@ ospf_config:
             wildcard: 0.0.0.255
             area: 0
           - ip: 172.26.1.0
-            wildcard: 0.0.0.0
+            wildcard: 0.0.0.255
             area: 0
           - ip: 172.26.2.0
-            wildcard: 0.0.0.0
+            wildcard: 0.0.0.255
             area: 0
           router-id: 192.168.50.15

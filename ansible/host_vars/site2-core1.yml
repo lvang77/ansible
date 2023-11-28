@@ -75,7 +75,7 @@ dmvpn:
     ip_addr: 10.10.0.3 255.255.255.0
   isp_intf:
     interface: GigabitEthernet2
-    description: "ISP Gi4"
+    description: "ISP Gi2"
     ip_addr: 172.16.2.2
     mask: 255.255.255.0
     gateway: 172.16.2.1
