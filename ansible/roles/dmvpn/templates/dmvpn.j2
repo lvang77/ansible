@@ -1,0 +1,81 @@
+vrf definition DMVPN-VRF
+ !
+ address-family ipv4
+ exit-address-family
+!
+
+crypto keyring DMVPN vrf DMVPN-VRF
+  pre-shared-key address 0.0.0.0 0.0.0.0 key admin
+!
+
+crypto isakmp policy 10
+ encryption aes
+ hash sha
+ authentication pre-share
+ group 14
+crypto isakmp profile DMVPN
+   keyring DMVPN
+   match identity address 0.0.0.0 DMVPN-VRF
+!
+crypto ipsec transform-set DMVPN esp-aes 256 esp-md5-hmac
+ mode transport
+!
+crypto ipsec profile DMVPN
+ set transform-set DMVPN
+ set isakmp-profile DMVPN
+!
+interface Tunnel0
+ ip address {{ dmvpn.tunnel.ip_addr }}
+ no ip redirects
+ ip mtu 1400
+ ip nhrp authentication admin
+{% if dmvpn.layer == "spoke" %}
+ ip nhrp map {{ dmvpn.hub.tun_addr }} {{ dmvpn.hub.isp_addr }}
+{% endif %}
+ ip nhrp network-id 1
+ ip nhrp holdtime 300
+{% if dmvpn.layer == "hub" %}
+ ip nhrp redirect
+{% endif %}
+{% if dmvpn.layer == "spoke" %}
+ ip nhrp nhs {{ dmvpn.hub.tun_addr }}
+{% endif %}
+ ip tcp adjust-mss 1360
+ tunnel source {{ dmvpn.isp_intf.interface }}
+ tunnel mode gre multipoint
+ tunnel key 1
+ tunnel vrf DMVPN-VRF
+ tunnel protection ipsec profile DMVPN
+!
+interface {{ dmvpn.isp_intf.interface }}
+ description {{ dmvpn.isp_intf.description }}
+ vrf forwarding DMVPN-VRF
+ ip address {{ dmvpn.isp_intf.ip_addr }} {{ dmvpn.isp_intf.mask }}
+ no shutdown
+!
+router bgp {{ bgp_config.asn }}
+{% if dmvpn.layer == "hub" %}
+ bgp listen range 10.10.0.0/24 peer-group SPOKES
+ neighbor SPOKES peer-group
+ neighbor SPOKES remote-as {{ bgp_config.asn }}
+ neighbor SPOKES update-source Tunnel0
+ neighbor SPOKES default-originate
+ neighbor SPOKES next-hop-self
+ neighbor SPOKES route-reflector-client
+ neighbor SPOKES route-map DEFAULT out
+{% endif %}
+{% if dmvpn.layer == "spoke" %}
+ neighbor {{ dmvpn.hub.tun_addr }} remote-as {{ bgp_config.asn }}
+ neighbor {{ dmvpn.hub.tun_addr }} update-source Tunnel0
+ neighbor {{ dmvpn.hub.tun_addr }} next-hop-self
+{% endif %}
+!
+
+ip route vrf DMVPN-VRF 0.0.0.0 0.0.0.0 {{ dmvpn.isp_intf.gateway }}
+!
+
+ip prefix-list DEFAULT seq 5 permit 0.0.0.0/0
+!
+route-map DEFAULT permit 10
+ match ip address prefix-list DEFAULT
+

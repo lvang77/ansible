@@ -10,8 +10,6 @@ eigrp_config:
             router-id: 192.168.50.18
           network:
             address-wildcard:
-            - ipv4-address: 10.1.1.0
-              wildcard: 0.0.0.255
             - ipv4-address: 10.1.2.0
               wildcard: 0.0.0.255
             - ipv4-address: 10.1.3.0
@@ -29,14 +27,6 @@ interface_config:
       ietf-ip:ipv4:
         address:
         - ip: 192.168.50.18
-          netmask: 255.255.255.0
-    - name: GigabitEthernet2
-      description: "site1-vedge1"
-      type: iana-if-type:ethernetCsmacd
-      enabled: true
-      ietf-ip:ipv4:
-        address:
-        - ip: 10.1.1.2
           netmask: 255.255.255.0
     - name: GigabitEthernet3
       description: "site1-dist1 Gi0/1"
@@ -63,22 +53,31 @@ interface_config:
           netmask: 255.255.255.255
 
 bgp_config:
-  asn: 65011
+  asn: 65041
   rid: 192.168.50.18
-  networks:
-    - address: "10.1.1.0"
-      mask: "255.255.255.0"
   neighbors:
     - neighbor: 1.1.1.11
       peer_asn: 65012
     - neighbor: 1.1.1.12
       peer_asn: 65013
-  vedge_neighbor:
-    - neighbor: "10.1.1.1"
-      peer_asn: 65010
+  source: "Loopback0"
 
 cdp_config:
   interfaces:
     - "GigabitEthernet2"
     - "GigabitEthernet3"
     - "GigabitEthernet4"
+
+dmvpn:
+  layer: "spoke"
+  tunnel:
+    ip_addr: 10.10.0.2 255.255.255.0
+  isp_intf:
+    interface: GigabitEthernet2
+    description: "ISP Gi2"
+    ip_addr: 172.16.1.2
+    mask: 255.255.255.0
+    gateway: 172.16.1.1
+  hub:
+    tun_addr: 10.10.0.1
+    isp_addr: 172.16.0.2

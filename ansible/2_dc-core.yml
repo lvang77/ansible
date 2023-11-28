@@ -8,5 +8,4 @@
   roles:
     - interface_rest
     - save_config_rest
-    - ospf_rest
     - bgp

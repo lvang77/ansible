@@ -7,9 +7,6 @@ ospf_config:
         process-id:
         - id: 2
           network:
-          - ip: 10.2.0.0
-            wildcard: 0.0.0.255
-            area: 0
           - ip: 10.2.1.0
             wildcard: 0.0.0.255
             area: 0
@@ -31,14 +28,6 @@ interface_config:
       ietf-ip:ipv4:
         address:
         - ip: 192.168.50.20
-          netmask: 255.255.255.0
-    - name: GigabitEthernet2
-      description: "site2-vedge1 Ge0/2"
-      type: iana-if-type:ethernetCsmacd
-      enabled: true
-      ietf-ip:ipv4:
-        address:
-        - ip: 10.2.0.2
           netmask: 255.255.255.0
     - name: GigabitEthernet3
       description: "site2-dist1 Gi0/1"
@@ -65,22 +54,31 @@ interface_config:
           netmask: 255.255.255.255
 
 bgp_config:
-  asn: 65021
+  asn: 65041
   rid: 192.168.50.20
-  networks:
-    - address: "10.2.0.0"
-      mask: "255.255.255.0"
   neighbors:
     - neighbor: 2.2.2.11
       peer_asn: 65022
     - neighbor: 2.2.2.12
       peer_asn: 65023
-  vedge_neighbor:
-    - neighbor: "10.2.0.1"
-      peer_asn: 65020
+  source: "Loopback0"
 
 cdp_config:
   interfaces:
     - "GigabitEthernet2"
     - "GigabitEthernet3"
     - "GigabitEthernet4"
+
+dmvpn:
+  layer: "spoke"
+  tunnel:
+    ip_addr: 10.10.0.3 255.255.255.0
+  isp_intf:
+    interface: GigabitEthernet2
+    description: "ISP Gi4"
+    ip_addr: 172.16.2.2
+    mask: 255.255.255.0
+    gateway: 172.16.2.1
+  hub:
+    tun_addr: 10.10.0.1
+    isp_addr: 172.16.0.2

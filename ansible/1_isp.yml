@@ -1,11 +1,10 @@
 ---
 
 - name: "Setup ISP"
-  hosts: isp
+  hosts: isp1
   gather_facts: false
   connection: network_cli
 
   roles:
     - interface_rest
-    - eigrp_rest
     - save_config_rest

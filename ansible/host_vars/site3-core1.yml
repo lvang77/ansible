@@ -1,7 +1,7 @@
 ---
 
 bgp_config:
-  asn: 65031
+  asn: 65041
   rid: 192.168.50.22
   networks:
     - address: "10.3.0.0"
@@ -11,9 +11,7 @@ bgp_config:
       peer_asn: 65032
     - neighbor: 3.3.3.12
       peer_asn: 65033
-  vedge_neighbor:
-    - neighbor: "10.3.0.1"
-      peer_asn: 65030
+  source: "Loopback0"
 
 ospf_config:
   Cisco-IOS-XE-native:router:
@@ -43,14 +41,6 @@ interface_config:
       ietf-ip:ipv4:
         address:
         - ip: 192.168.50.22
-          netmask: 255.255.255.0
-    - name: GigabitEthernet2
-      description: "site3-vedge1 Gi4"
-      type: iana-if-type:ethernetCsmacd
-      enabled: true
-      ietf-ip:ipv4:
-        address:
-        - ip: 10.3.0.2
           netmask: 255.255.255.0
     - name: GigabitEthernet3
       description: "site3-dist1 Gi0/1"
@@ -83,3 +73,16 @@ cdp_config:
     - "GigabitEthernet3"
     - "GigabitEthernet4"
 
+dmvpn:
+  layer: "spoke"
+  tunnel:
+    ip_addr: 10.10.0.4 255.255.255.0
+  isp_intf:
+    interface: GigabitEthernet2
+    description: "ISP Gi5"
+    ip_addr: 172.16.3.2
+    mask: 255.255.255.0
+    gateway: 172.16.3.1
+  hub:
+    tun_addr: 10.10.0.1
+    isp_addr: 172.16.0.2

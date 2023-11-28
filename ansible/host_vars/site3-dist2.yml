@@ -7,9 +7,10 @@ bgp_config:
       mask: "255.255.255.0"
   neighbors:
     - neighbor: 3.3.3.10
-      peer_asn: 65031
+      peer_asn: 65041
     - neighbor: 3.3.3.11
       peer_asn: 65032
+  source: "Loopback0"
 
 ospf_config:
   pid: 3

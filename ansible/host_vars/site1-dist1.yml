@@ -6,7 +6,6 @@ eigrp_config:
   rid: 192.168.50.26
   networks:
     - "10.1.2.0 0.0.0.255"
-    - "10.1.4.0 0.0.0.255"
     - "10.1.6.0 0.0.0.255"
     - "1.1.1.11 0.0.0.0"
 
@@ -32,9 +31,10 @@ bgp_config:
       mask: "255.255.255.0"
   neighbors:
     - neighbor: 1.1.1.10
-      peer_asn: 65011
+      peer_asn: 65041
     - neighbor: 1.1.1.12
       peer_asn: 65013
+  source: "Loopback0"
 
 cdp_config:
   interfaces:

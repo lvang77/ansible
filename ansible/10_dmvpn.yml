@@ -1,0 +1,10 @@
+---
+
+- name: "Setup DMVPN"
+  hosts: dc-core1, site1-core1, site2-core1, site3-core1
+  gather_facts: false
+  connection: network_cli
+
+  roles:
+    - dmvpn
+
