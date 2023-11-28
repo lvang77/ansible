@@ -39,6 +39,9 @@ ospf_config:
       ospf:
         process-id:
         - id: 1
+          mpls:
+            ldp:
+              autoconfig: {}
           network:
           - ip: 172.16.2.0
             wildcard: 0.0.0.255
