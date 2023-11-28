@@ -25,6 +25,13 @@ interface_config:
         address:
         - ip: 172.20.0.2
           netmask: 255.255.255.0
+    - name: Loopback0
+      type: iana-if-type:softwareLoopback
+      enabled: true
+      ietf-ip:ipv4:
+        address:
+        - ip: 11.11.11.11
+          netmask: 255.255.255.255
 
 ospf_config:
   Cisco-IOS-XE-native:router:
@@ -38,5 +45,8 @@ ospf_config:
             area: 0
           - ip: 172.20.0.0
             wildcard: 0.0.0.255
+            area: 0
+          - ip: 11.11.11.11
+            wildcard: 0.0.0.0
             area: 0
           router-id: 192.168.50.38
