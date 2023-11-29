@@ -33,31 +33,29 @@ interface_config:
         - ip: 33.33.33.33
           netmask: 255.255.255.255
 
+mpls_config:
+  vrfs:
+    - vrf: CUSTOMER1
+      rd: "100:1"
+      interface: GigabitEthernet2
+      intf_ip_addr: 172.16.2.1 255.255.255.0
+      ospf_pid: 2
+      ospf_rid: "33.33.33.33"
+      ospf_network: 172.16.2.0 0.0.0.255
+      ospf_area: 0
+
+bgp_config:
+  asn: 100
+  neighbors:
+    - neighbor: 11.11.11.11
+    - neighbor: 22.22.22.22
+    - neighbor: 44.44.44.44
+  loopback: Loopback0
+      
 ospf_config:
-  Cisco-IOS-XE-native:router:
-    Cisco-IOS-XE-ospf:router-ospf:
-      ospf:
-        process-id:
-        - id: 1
-          mpls:
-            ldp:
-              autoconfig: {}
-          network:
-          - ip: 172.22.0.0
-            wildcard: 0.0.0.255
-            area: 0
-          - ip: 33.33.33.33
-            wildcard: 0.0.0.0
-            area: 0
-          redistribute:
-            ospf:
-            - process-id: 2
-          router-id: 192.168.50.40
-        - id: 2
-          network:
-          - ip: 172.16.2.0
-            wildcard: 0.0.0.255
-            area: 0
-          redistribute:
-            ospf:
-            - process-id: 1
+  pid: 1
+  rid: 192.168.50.40
+  mpls: true
+  networks:
+    - "33.33.33.33 0.0.0.0 area 0"
+    - "172.22.0.0 0.0.0.255 area 0"

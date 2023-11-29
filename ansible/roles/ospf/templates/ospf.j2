@@ -1,6 +1,8 @@
-no router ospf {{ ospf_config.pid }}
 router ospf {{ ospf_config.pid }}
- {% for net in ospf_config.networks %}
- network {{ net }}
- {% endfor %}
  router-id {{ ospf_config.rid }}
+{% for net in ospf_config.networks %}
+ network {{ net }}
+{% endfor %}
+{% if ospf_config.mpls is defined %}
+ mpls ldp autoconfig
+{% endif %}

@@ -1,0 +1,44 @@
+{% for vrfs in mpls_config.vrfs%}
+vrf definition {{ vrfs.vrf }}
+ rd {{ vrfs.rd }}
+ route-target export {{ vrfs.rd }}
+ route-target import {{ vrfs.rd }}
+ !
+ address-family ipv4
+ exit-address-family
+!
+interface {{ vrfs.interface }}
+ vrf forwarding {{ vrfs.vrf }}
+ ip address {{ vrfs.intf_ip_addr }}
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+
+router ospf {{ vrfs.ospf_pid }} vrf {{ vrfs.vrf }}
+ router-id {{ vrfs.ospf_rid }}
+ redistribute bgp {{ bgp_config.asn }}
+ network {{ vrfs.ospf_network }} area {{ vrfs.ospf_area }}
+{% endfor %}
+!
+router bgp {{ bgp_config.asn }}
+ bgp log-neighbor-changes
+{% for neigh in bgp_config.neighbors %}
+ neighbor {{ neigh.neighbor }} remote-as {{ bgp_config.asn }}
+ neighbor {{ neigh.neighbor }} update-source {{ bgp_config.loopback }}
+ neighbor {{ neigh.neighbor }} next-hop-self
+{% endfor %}
+ !
+ address-family vpnv4
+{% for neigh in bgp_config.neighbors %}
+  neighbor {{ neigh.neighbor }} activate
+  neighbor {{ neigh.neighbor }} send-community extended
+{% endfor %}
+ exit-address-family
+ !
+{% for vrfs in mpls_config.vrfs %}
+ address-family ipv4 vrf {{ vrfs.vrf }}
+  redistribute ospf {{ vrfs.ospf_pid }}
+{% endfor %}
+ exit-address-family
+

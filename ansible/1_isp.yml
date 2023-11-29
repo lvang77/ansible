@@ -1,11 +1,26 @@
 ---
 
-- name: "Setup ISP"
+- name: "Setup ISP Interfaces"
   hosts: isp
   gather_facts: false
   connection: network_cli
 
   roles:
     - interface_rest
+
+- name: "Setup ISP OSPF"
+  hosts: isp1, isp2, isp3, isp4
+  gather_facts: false
+  connection: network_cli
+
+  roles:
     - ospf_rest
-    - save_config_rest
+
+- name: "Setup MPLS"
+  hosts: pe1, pe2, pe3, pe4
+  gather_facts: false
+  connection: network_cli
+
+  roles:
+    - ospf
+    - mpls_pe

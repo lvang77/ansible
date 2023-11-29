@@ -1,0 +1,7 @@
+---
+# tasks file for mpls_pe
+
+- name: "Setup MPLS on PE Routers"
+  cisco.ios.ios_config:
+    src: mpls_pe.j2
+    save_when: "modified"
