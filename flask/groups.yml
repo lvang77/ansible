@@ -1,0 +1,36 @@
+---
+
+sdwan:
+  data:
+    def_password: "admin"
+
+cisco:
+  data:
+  connection_options:
+    scrapli:
+      extras:
+        auth_strict_key: False
+        timeout_transport: 10
+    scrapli_netconf:
+      extras:
+        auth_strict_key: False
+        timeout_transport: 10
+
+site1-core:
+  data:
+
+site1-dist:
+  data:
+
+site2-core:
+  data:
+
+site2-dist:
+  data:
+
+site3-core:
+  data:
+
+site3-dist:
+  data:
+    
