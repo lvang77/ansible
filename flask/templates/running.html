@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Running Configuration</h3>
+{% for run in run_list %}
+<div class="alert alert-dark" role="alert">
+<pre>
+{{ run }}
+
+</pre>
+</div>
+{% endfor %}
+{% endblock content %}

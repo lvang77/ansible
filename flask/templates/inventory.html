@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Device List</h3>
+{% for host in hosts %}
+<div class="alert alert-light" role="alert">
+<pre>
+DEVICE: {{ host }}
+IP ADDRESS: {{ host.hostname }}
+DEVICE PLATFORM: {{ host.platform }}
+</pre>
+</div>
+{% endfor %}
+{% endblock content %}

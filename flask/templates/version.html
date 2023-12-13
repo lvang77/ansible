@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Device Version</h3>
+{% for data in ver_list %}
+<div class="alert alert-light" role="alert">
+<pre>
+DEVICE: {{ data.version.hostname }}
+VERSION: {{ data.version.version_short }}
+UPTIME: {{ data.version.uptime }}
+SERIAL NUMBER: {{ data.version.chassis_sn }}
+</pre>
+</div>
+{% endfor %}
+{% endblock content %}
