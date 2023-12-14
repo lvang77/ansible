@@ -5,7 +5,11 @@ from nornir_jinja2.plugins.tasks import template_file
 from nornir_utils.plugins.tasks.data import load_yaml
 from nornir.core.filter import F
 from nornir_utils.plugins.functions import print_result
+from nornir_scrapli.tasks import send_configs
 
+
+def scp_archive(task):
+    task.run(task=send_configs, configs=["ip scp server enable", "archive", "path flash:archive", "wr"])
 
 def replace_ospf(task):
     data = task.run(
@@ -44,5 +48,8 @@ nr = InitNornir(config_file="config.yml")
 
 
 filtered = nr.filter(F(location="site2-dist") | F(location="site3-dist"))
+
+scp_results = filtered.run(task=scp_archive)
+
 results = filtered.run(task=replace_feature)
 print_result(results)
